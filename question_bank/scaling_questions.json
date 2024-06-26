@@ -1,0 +1,82 @@
+[
+    {
+        "question": "Which technique should you use when you want to scale your data to a range between 0 and 1?",
+        "answer": "Normalize"
+    },
+    {
+        "question": "Which method is appropriate if you need your data to have a mean of 0 and a standard deviation of 1?",
+        "answer": "Standardize"
+    },
+    {
+        "question": "When dealing with features that have outliers, which method helps in scaling while being less sensitive to those outliers?",
+        "answer": "Robust Scale"
+    },
+    {
+        "question": "Which technique should you apply if your machine learning algorithm assumes that the data is normally distributed?",
+        "answer": "Standardize"
+    },
+    {
+        "question": "When preparing your dataset for clustering algorithms like K-means, which method would ensure that all features contribute equally to the distance computations?",
+        "answer": "Normalize"
+    },
+    {
+        "question": "For a dataset where the feature values have different ranges but you want them to be on a common scale, which method would you use?",
+        "answer": "Normalize"
+    },
+    {
+        "question": "Which method is best suited for Principal Component Analysis (PCA) to ensure that the features are on the same scale?",
+        "answer": "Standardize"
+    },
+    {
+        "question": "When preprocessing your data for a neural network, which method could help in speeding up the training process and achieving better performance?",
+        "answer": "Normalize"
+    },
+    {
+        "question": "If you are dealing with a dataset that includes outliers, and you want to minimize the influence of those outliers, which technique might you use?",
+        "answer": "Robust Scale"
+    },
+    {
+        "question": "Which method would you apply when the scale of the features is not crucial but the variance and distribution characteristics need to be maintained?",
+        "answer": "Standardize"
+    },
+    {
+        "question": "Which method centers your data by removing the median and scales it according to the interquartile range?",
+        "answer": "Robust Scale"
+    },
+    {
+        "question": "For handling features with different units and scales without being affected by extreme values, which technique would you use?",
+        "answer": "Robust Scale"
+    },
+    {
+        "question": "Which technique ensures that the range of each feature is between 0 and 1, making the features directly comparable?",
+        "answer": "Normalize"
+    },
+    {
+        "question": "When a dataset contains significant outliers, which scaling technique would help ensure that these outliers do not skew the scaling process?",
+        "answer": "Robust Scale"
+    },
+    {
+        "question": "For ensuring that your data conforms to a normal distribution with zero mean and unit variance, which method is ideal?",
+        "answer": "Standardize"
+    },
+    {
+        "question": "Which technique rescales the data so that it lies within a specified range, often between 0 and 1?",
+        "answer": "Normalize"
+    },
+    {
+        "question": "If the dataset has many outliers and you want to scale it such that the central values are emphasized over the extreme values, which method would you choose?",
+        "answer": "Robust Scale"
+    },
+    {
+        "question": "For preprocessing data where the distribution is unknown but you require the features to have a similar scale, which method is suitable?",
+        "answer": "Normalize"
+    },
+    {
+        "question": "When aiming to transform your dataset to have a mean of zero and a unit variance to improve algorithm performance, which technique is appropriate?",
+        "answer": "Standardize"
+    },
+    {
+        "question": "Which method adjusts the dataset to mitigate the influence of outliers by using the median and interquartile range?",
+        "answer": "Robust Scale"
+    }
+]

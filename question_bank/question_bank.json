@@ -1,0 +1,108 @@
+{
+    "questions": [
+        {
+            "description": "Analyze the sales data to understand the trends and patterns.",
+            "data": {
+                "Month": ["2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12"],
+                "Sales": [100, 120, 130, 150, 140, 160, 170, 180, 190, 200, 210, 220],
+                "Profit": [30, 40, 35, 45, 42, 50, 55, 60, 62, 65, 68, 70]
+                        },
+            "questions": [
+                {
+                    "question": "What is the overall sales trend?",
+                    "options": ["Increasing", "Decreasing", "Stable"],
+                    "answer": "Increasing"
+                },
+                {
+                    "question": "Which 3 consecutive months had the highest sales growth?",
+                    "options": ["March-April-May", "April-May-June", "May-June-July", "June-July-August"],
+                    "answer": "May-June-July"
+                },
+                {
+                    "question": "What was the total profit for the first half of the year?",
+                    "options": ["231", "248", "239", "242"],
+                    "answer": "242"
+                },
+                {
+                    "question": "How much profit would you need to make in December to have an average profit of 50 for the year?",
+                    "options": ["54", "59", "48", "64"],
+                    "answer": "48"
+                },
+                {
+                    "question": "Using the given data, predict the sales for May next year if the current trend continues.",
+                    "options": ["260", "250", "280", "270"],
+                    "answer": "280"
+                }
+            ]
+        },
+        {
+            "description": "Evaluate the employee performance data to identify key insights. Remember if an employee has a bonus of 5000 and a performance of 85, the bonus is 5000/85 = 58.82 per performance point.",
+            "data": {
+                "Employee": ["Alice", "Bob", "Charlie", "David", "Eva", "Frank"],
+                "Performance": [85, 92, 78, 88, 91, 76],
+                "Bonus": [5000, 6000, 4000, 5500, 5800, 3800]
+            },
+            "questions": [
+                {
+                    "question": "Which employee had the highest performance?",
+                    "options": ["Alice", "Bob", "Charlie", "David", "Eva", "Frank"],
+                    "answer": "Bob"
+                },
+                {
+                    "question": "Which employee is closest to the average performance?",
+                    "options": ["Alice", "Bob", "Charlie", "David", "Eva", "Frank"],
+                    "answer": "David"
+                },
+                {
+                    "question": "What is the best performing employee's bonus per performance point?",
+                    "options": ["65.66", "63.66", "63.92", "65.22"],
+                    "answer": "65.21"
+                },
+                {
+                    "question": "Imagine a new employee joins the team with a performance score of 80. What would be her bonus?",
+                    "options": ["4500", "4600", "4400", "4700"],
+                    "answer": "4600"
+                },
+                {
+                    "question": "After a change of policy, the company decides it wants to use a reducing function to make bonuses more equitable. The new bonus is calculated as 5000/(Performance^0.5). Which employee now has the highest bonus per performance point?",
+                    "options": ["Alice", "Bob", "Charlie", "David", "Eva", "Frank"],
+                    "answer": "Bob"
+                }
+            ]
+        },
+        {
+            "description": "Analyze the website traffic data to understand user behavior.",
+            "data": {
+                "Day": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                "Visits": [500, 700, 600, 800, 1000, 900, 400],
+                "Bounce Rate": [0.2, 0.15, 0.18, 0.1, 0.05, 0.08, 0.25]            },
+            "questions": [
+                {
+                    "question": "Which day had the highest number of visits?",
+                    "options": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                    "answer": "Friday"
+                },
+                {
+                    "question": "What is the average bounce rate for the week?",
+                    "options": ["0.12", "0.14", "0.16", "0.18"],
+                    "answer": "0.16"
+                },
+                {
+                    "question": "Which day showed the most improvement in bounce rate from the previous day?",
+                    "options": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                    "answer": "Saturday"
+                },
+                {
+                    "question": "Predict the number of visits on the next weekend if visits increase by 18% for each day.",
+                    "options": ["1435", "1345", "1469", "1522"],
+                    "answer": "1469"
+                },
+                {
+                    "question": "Imagine an awareness campaign is run next week to increase visits. The cost of the campaign is 100 per hundred visits. How much would the campaign cost if the visits increase by 20%?",
+                    "options": ["5880", "6780", "5450", "6270"],
+                    "answer": "5880"
+                }
+            ]
+        }
+    ]
+}

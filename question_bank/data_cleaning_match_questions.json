@@ -1,0 +1,42 @@
+[
+    {
+        "functions": ["dropna", "fillna", "astype", "replace"],
+        "descriptions": ["Remove missing values", "Replace missing values", "Change data type", "Replace specific values"]
+    },
+    {
+        "functions": ["drop_duplicates", "isna", "notna", "value_counts"],
+        "descriptions": ["Remove duplicate rows", "Detect missing values", "Detect non-missing values", "Count unique values"]
+    },
+    {
+        "functions": ["pivot_table", "groupby", "merge", "concat"],
+        "descriptions": ["Create a spreadsheet-style pivot table", "Group DataFrame using a mapper or by a Series of columns", "Merge DataFrame or named Series objects with a database-style join", "Concatenate pandas objects along a particular axis"]
+    },
+    {
+        "functions": ["melt", "stack", "unstack", "pivot"],
+        "descriptions": ["Unpivot a DataFrame from wide format to long format", "Stack the prescribed level(s) from columns to index", "Unstack the prescribed level(s) from index to columns", "Reshape data (produce a pivot table) based on column values"]
+    },
+    {
+        "functions": ["sort_values", "sort_index", "rank", "nlargest"],
+        "descriptions": ["Sort by the values along either axis", "Sort object by labels (along an axis)", "Compute numerical data ranks (1 through n) along axis", "Return the first n rows ordered by columns in descending order"]
+    },
+    {
+        "functions": ["apply", "map", "applymap", "transform"],
+        "descriptions": ["Apply a function along an axis of the DataFrame", "Map values of Series according to input correspondence", "Apply a function to a DataFrame elementwise", "Apply function to each group, producing a DataFrame with the same shape"]
+    },
+    {
+        "functions": ["resample", "bfill", "ffill", "rolling"],
+        "descriptions": ["Resample time-series data", "Backward fill missing values", "Forward fill missing values", "Provide rolling window calculations"]
+    },
+    {
+        "functions": ["agg", "describe", "idxmax", "idxmin"],
+        "descriptions": ["Aggregate using one or more operations over the specified axis", "Generate descriptive statistics", "Return index of first occurrence of maximum over requested axis", "Return index of first occurrence of minimum over requested axis"]
+    },
+    {
+        "functions": ["clip", "cov", "corr", "pct_change"],
+        "descriptions": ["Trim values at input threshold(s)", "Compute pairwise covariance of columns, excluding NA/null values", "Compute pairwise correlation of columns, excluding NA/null values", "Compute percentage change between the current and a prior element"]
+    },
+    {
+        "functions": ["shift", "expanding", "ewm", "cumprod"],
+        "descriptions": ["Shift index by desired number of periods", "Provide expanding transformations", "Provide exponential weighted functions", "Return cumulative product over a DataFrame or Series axis"]
+    }
+]

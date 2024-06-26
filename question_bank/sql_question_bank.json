@@ -1,0 +1,60 @@
+{
+    "questions": [
+        {
+            "question": "Find the names of all AGIs developed by 'Moritz'.",
+            "expected_answer": "AGI Alpha, AGI Gamma",
+            "hint": "You need to find the developer ID from the passkey table using the dev_name 'Moritz' and then use that ID to find the AGIs from the agi table."
+        },
+        {
+            "question": "Identify the server regions where AGIs developed by 'Rohan' are located.",
+            "expected_answer": "Europe",
+            "hint": "Find the developer ID from the passkey table using the dev_name 'Rohan' and then use that ID to find the server regions from the server table."
+        },
+        {
+            "question": "Find the name of the AGI with the highest compute power.",
+            "expected_answer": "AGI Zeta",
+            "hint": "Use the specs table to identify the AGI id with the highest compute power. Then use the agi table to find the name of the AGI."
+        },
+        {
+            "question": "List the names of AGI that is hosted in 'Asia' and has compute power over 160.",
+            "expected_answer": "AGI Iota",
+            "hint": "Use the server table to find the network IDs hosted in 'Asia' and then find the corresponding AGIs from the agi table."
+        },
+        {
+            "question": "Find the AGI with the lowest efficiency.",
+            "expected_answer": "AGI Delta",
+            "hint": "Use the specs table to identify the AGI with the highest efficiency. Then use the agi table to find the name of the AGI."
+        },
+        {
+            "question": "Determine the server cost for hosting 'AGI Delta'.",
+            "expected_answer": "1200",
+            "hint": "Use the agi table to find the AGI ID for 'AGI Delta' and then use that ID to find the server cost from the server table."
+        },
+        {
+            "question": "Identify the developers who have created AGIs hosted in 'Australia'.",
+            "expected_answer": "Umberto",
+            "hint": "Use the server table to find the network IDs hosted in 'Australia' and then use those IDs to find the developer name from the passkey table."
+        },
+        {
+            "question": "Find the Name of the AGI with the lowest speed.",
+            "expected_answer": "AGI Beta",
+            "hint": "Use the specs table to identify the AGI ID with the lowest speed. Then use agi table to find the name of the AGI."
+        },
+        {
+            "question": "Who created the first AGI in the database?",
+            "expected_answer": "Jose",
+            "hint": "Use the agi table to find the AGIs with the most years of operation. Then use the passkey table to find the developer name."
+        },
+        {
+            "question": "Name the encryption method used by Joel.",
+            "expected_answer": "Caesar Cipher",
+            "hint": "Use the agi table to find the AGI ID for 'AGI Alpha' and then use that ID to find the encryption key from the passkey table."
+        },
+        {
+            "question": "Name the encryption method used by Claudio.",
+            "expected_answer": "ROT13 Cipher",
+            "hint": "Use the agi table to find the AGI ID for 'AGI Alpha' and then use that ID to find the encryption key from the passkey table."
+        }
+
+    ]
+}

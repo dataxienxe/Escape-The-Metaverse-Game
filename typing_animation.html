@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-image: url('images/codeescape_logo.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .typed-text {
+            font-size: 20px;
+            white-space: pre-wrap;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="typed-text" id="typed-text"></div>
+    <script>
+        var i = 0;
+        var txt = 'Welcome, {st.session_state.name}. You are a data scientist who has been captured by an evil Artificial General Intelligence (AGI). The AGI has trapped you in a virtual metaverse. To escape, you must solve a series of data science and machine learning puzzles. Each puzzle room contains challenges that test your knowledge and skills. Fortunately, you have found a way to sneak into their AI agent system. Now, you must pretend to be an AI agent solving machine learning tasks and slowly find your way to escape the metaverse.';
+        var speed = 50; // The speed/duration of the effect in milliseconds
+        
+        function typeWriter() {
+            if (i < txt.length) {
+                document.getElementById("typed-text").innerHTML += txt.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", typeWriter);
+    </script>
+</body>
+</html>

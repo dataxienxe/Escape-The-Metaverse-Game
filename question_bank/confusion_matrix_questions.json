@@ -1,0 +1,77 @@
+[
+    {
+        "confusion_matrix": {
+            "no_danger_no_danger": 50,
+            "no_danger_danger": 10,
+            "danger_no_danger": 5,
+            "danger_danger": 35
+        },
+        "questions": [
+            {
+                "question": "In a situation where missing a dangerous AI could have catastrophic consequences, should the model prioritize precision or recall?",
+                "options": ["Precision", "Recall"],
+                "answer": "Recall"
+            },
+            {
+                "question": "If the AGI's resources are limited and it can only act on a certain number of predictions, should the model focus on minimizing false positives or false negatives?",
+                "options": ["Minimize False Positives", "Minimize False Negatives"],
+                "answer": "Minimize False Negatives"
+            },
+            {
+                "question": "Considering the confusion matrix, if you were to improve the model, which metric would you prioritize enhancing to ensure the safety of the AGI?",
+                "options": ["Accuracy", "Precision", "Recall"],
+                "answer": "Recall"
+            }
+        ]
+    },
+    {
+        "confusion_matrix": {
+            "no_danger_no_danger": 40,
+            "no_danger_danger": 20,
+            "danger_no_danger": 10,
+            "danger_danger": 30
+        },
+        "questions": [
+            {
+                "question": "When the cost of a false positive is high, which metric should the model prioritize?",
+                "options": ["Precision", "Recall"],
+                "answer": "Precision"
+            },
+            {
+                "question": "If detecting every instance of a dangerous AI is critical, which metric is more important?",
+                "options": ["Precision", "Recall"],
+                "answer": "Recall"
+            },
+            {
+                "question": "Given the confusion matrix, if you aim to reduce the number of false negatives, which metric should be improved?",
+                "options": ["Accuracy", "Precision", "Recall"],
+                "answer": "Recall"
+            }
+        ]
+    },
+    {
+        "confusion_matrix": {
+            "no_danger_no_danger": 30,
+            "no_danger_danger": 15,
+            "danger_no_danger": 20,
+            "danger_danger": 35
+        },
+        "questions": [
+            {
+                "question": "In scenarios where false negatives are more critical than false positives, which metric should be focused on?",
+                "options": ["Precision", "Recall"],
+                "answer": "Recall"
+            },
+            {
+                "question": "If the model's objective is to minimize incorrect predictions of danger, which metric should be prioritized?",
+                "options": ["Minimize False Positives", "Minimize False Negatives"],
+                "answer": "Minimize False Positives"
+            },
+            {
+                "question": "Given the confusion matrix, which metric would be the best to enhance to improve the model's overall performance?",
+                "options": ["Accuracy", "Precision", "Recall"],
+                "answer": "Accuracy"
+            }
+        ]
+    }
+]

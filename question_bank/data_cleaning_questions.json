@@ -1,0 +1,52 @@
+[
+    {
+        "question": "import pandas as pd\n\n# Load the dataset\ndf = pd.read_csv('data.csv')\n\n# Drop rows with missing values\ndf = df._____(subset=['column'])\n\n# Replace missing values with the median\ndf['column'] = df['column']._____(df['column'].median())",
+        "answers": ["dropna", "fillna"],
+        "clues": ["This method removes rows with missing values.", "This method fills NA/NaN values."]
+    },
+    {
+        "question": "import pandas as pd\n\n# Load the dataset\ndf = pd.read_csv('data.csv')\n\n# Convert the 'date' column to datetime type\ndf['date'] = pd.to______(df['date'])\n\n# Remove rows where the 'age' is below zero\ndf = df[df['age'] >= 0]\n\n# Drop columns that are not required\ndf = df._____(columns=['unnecessary_column'])",
+        "answers": ["datetime", "drop"],
+        "clues": ["This function converts a column to datetime.", "This method removes columns or rows."]
+    },
+    {
+        "question": "import pandas as pd\n\n# Load the dataset\ndf = pd.read_csv('data.csv')\n\n# Remove duplicate rows\ndf = df._____(subset=['column'])\n\n# Replace outliers in 'salary' column with the mean salary\nmean_salary = df['salary'].mean()\ndf['salary'] = df['salary']._____(lambda x: mean_salary if x > 100000 or x < 10000 else x)",
+        "answers": ["drop_duplicates", "apply"],
+        "clues": ["This method removes duplicate rows.", "This method applies a function along an axis of the DataFrame."]
+    },
+    {
+        "question": "import pandas as pd\n\n# Load the dataset\ndf = pd.read_csv('data.csv')\n\n# Fill missing values with a specific value\ndf['column'] = df['column'].fillna(value=0)\n\n# Standardize the 'age' column\ndf['age'] = (df['age'] - df['age'].____()) / df['age'].____()",
+        "answers": ["mean", "std"],
+        "clues": ["This function returns the mean of the values.", "This function returns the standard deviation of the values."]
+    },
+    {
+        "question": "import pandas as pd\n\n# Load the dataset\ndf = pd.read_csv('data.csv')\n\n# Remove rows where 'age' is greater than 100\ndf = df[df['age'] <= 100]\n\n# Drop the 'unnecessary_column'\ndf = df._____(columns=['unnecessary_column'])\n\n# Reset the index after dropping rows\ndf = df._____(drop=True)",
+        "answers": ["drop", "reset_index"],
+        "clues": ["This method removes columns or rows.", "This method resets the index of the DataFrame."]
+    },
+    {
+        "question": "import pandas as pd\n\n# Load the dataset\ndf = pd.read_csv('data.csv')\n\n# Replace missing values with a fixed value\ndf['column'] = df['column']._____(0)\n\n# Filter rows where 'age' is greater than 18\ndf = df[df['age'] > 18]\n\n# Sort the DataFrame by 'salary'\ndf = df._____(by='salary')",
+        "answers": ["fillna", "sort_values"],
+        "clues": ["This method fills NA/NaN values.", "This method sorts the DataFrame by the specified column."]
+    },
+    {
+        "question": "import pandas as pd\n\n# Load the dataset\ndf = pd.read_csv('data.csv')\n\n# Remove columns with all missing values\ndf = df.dropna(___='all')\n\n# Interpolate missing values in 'column'\ndf['column'] = df['column']._____(method='linear')",
+        "answers": ["how", "interpolate"],
+        "clues": ["This method removes missing values.", "This method interpolates missing values using the specified method."]
+    },
+    {
+        "question": "import pandas as pd\n\n# Load the dataset\ndf = pd.read_csv('data.csv')\n\n# Remove rows where any element is missing\ndf = df.dropna(how='___')\n\n# Convert the 'price' column to numeric\ndf['price'] = pd.________(df['price'], errors='coerce')",
+        "answers": ["any", "to_numeric"],
+        "clues": ["This method removes missing values.", "This function converts a column to numeric, coercing errors to NaN."]
+    },
+    {
+        "question": "import pandas as pd\n\n# Load the dataset\ndf = pd.read_csv('data.csv')\n\n# Remove rows with missing values in 'column'\ndf = df.dropna(_____=['column'])\n\n# Replace values in 'status' column\ndf['status'] = df['status']._____(to_replace='old', value='new')",
+        "answers": ["subset", "replace"],
+        "clues": ["This method removes missing values.", "This method replaces values in the DataFrame."]
+    },
+    {
+        "question": "import pandas as pd\n\n# Load the dataset\ndf = pd.read_csv('data.csv')\n\n# Filter rows where 'age' is not null\ndf = df[df['age']._____( )]\n\n# Remove the 'address' column\ndf = df._____(columns=['address'])",
+        "answers": ["notna", "drop"],
+        "clues": ["This function checks for non-missing values.", "This method removes columns or rows."]
+    }
+]

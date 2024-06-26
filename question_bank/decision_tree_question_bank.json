@@ -1,0 +1,27 @@
+[
+    {
+        "tree_image": "decision_tree_1.png",
+        "characters": [
+            {"description": "Character 1: Self-Made AI, has emotions, and is of low rank.", "answer": "evil"},
+            {"description": "Character 2: Self-made AI, does not have emotions, and is of high rank.", "answer": "evil"},
+            {"description": "Character 3: An Earth origin, Strong AI, follows The Chosen Laws.", "answer": "good"}
+        ]
+    },
+    {
+        "tree_image": "decision_tree_2.png",
+        "characters": [
+            {"description": "Character 1: A Human who is an AI Supremacy Believer.", "answer": "evil"},
+            {"description": "Character 2: An AI Hybrid with an accessible Control Panel, and is a Certified AI.", "answer": "good"},
+            {"description": "Character 3: An AI Hybrid, without an Control Panel Accessible, and is a Certified AI.", "answer": "evil"}
+        ]
+    },
+    {
+        "tree_image": "decision_tree_3.png",
+        "characters": [
+            {"description": "Character 1: Communicates via Speech, Fast Pace.", "answer": "evil"},
+            {"description": "Character 2: Communicates via Text, Normal Output Level.", "answer": "good"},
+            {"description": "Character 3: Communicates via Hybrid method.", "answer": "unknown"}
+        ]
+    }
+
+]

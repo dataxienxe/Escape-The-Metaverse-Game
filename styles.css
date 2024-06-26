@@ -1,0 +1,14 @@
+body {
+    background-image: url('images/codeescape_logo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.typed-text {
+    font-size: 20px;
+    white-space: pre-wrap;
+    padding: 20px;
+}
