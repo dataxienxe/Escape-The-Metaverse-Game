@@ -219,13 +219,10 @@ def display_timer():
     """
     Display the timer in the UI.
     """
-    if 'start_time' in st.session_state:
-        elapsed_time = get_time_elapsed(st.session_state.start_time)
-        minutes, seconds = divmod(int(elapsed_time), 60)
-        timer_text = f"Time Elapsed: {minutes:02d}:{seconds:02d}"
-        st.sidebar.write(timer_text)
-    else:
-        st.sidebar.write("Timer not started")
+    elapsed_time = time.time() - st.session_state.start_time
+    minutes, seconds = divmod(int(elapsed_time), 60)
+    timer_text = f"Time Elapsed: {minutes:02d}:{seconds:02d}"
+    st.sidebar.write(timer_text)
 
 def display_status():
     """Display the current room, puzzle, and score in the sidebar"""
