@@ -160,6 +160,10 @@ if st.session_state.game_started:
                 st.session_state.current_room -= 1
                 st.experimental_rerun()
 
+        if 'start_time' in st.session_state:
+            ff.display_timer()
+
+        # Display the current room
         if st.session_state.current_room == 0:
             ff.metaverse_prison()
         elif st.session_state.current_room == 5:
