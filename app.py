@@ -9,7 +9,7 @@ import functions as ff
 import time
 
 
-openai.api_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+openai.api_key = "########################################"
 
 # Convert your image and get the base64 string
 base64_image = ff.image_to_base64('images/codeescape_logo.png')
