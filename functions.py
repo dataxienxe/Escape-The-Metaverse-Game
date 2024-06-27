@@ -30,6 +30,7 @@ def storyline():
     """ Display the storyline of the game"""
 
     st.title("Escape from the Virtual Metaverse")
+    set_background_image("https://i.pinimg.com/originals/4e/de/5a/4ede5a33c5490195b2b17466ad26d124.gif")
     # Embed the HTML file
     components.html(
     f"""
@@ -40,7 +41,6 @@ def storyline():
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             body {{
-                background: black;
                 color: white;
                 font-family: 'Courier New', Courier, monospace;
             }}
@@ -49,8 +49,6 @@ def storyline():
                 text-align: center;
                 width: 100%;
                 height: 100%;
-                background-image: url(https://i.gifer.com/QWc9.gif);
-                background-size: cover;
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 display: flex;
@@ -61,7 +59,7 @@ def storyline():
                 font-size: 20px;
                 white-space: pre-wrap;
                 padding: 20px;
-                border-radius: 10px;
+                border-radius: 2px;
                 background-color: rgba(0, 0, 0, 0.5); /* Translucent background */
                 color: white;
                 text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
@@ -91,7 +89,7 @@ def storyline():
     </body>
     </html>
     """,
-    height=400
+    height=300
 )
 
     if st.button("Begin your escape", key="begin_escape"):
@@ -106,6 +104,7 @@ def metaverse_prison():
         st.session_state.prison_stage = 0
 
     if st.session_state.prison_stage == 0:
+        set_background_image("https://i.gifer.com/tRm.gif")
         st.write("You wake up in the Metaverse prison and look around to see nothing but darkness.")
         st.write('You call out "Is anyone here?" And you get an instant superspeed response from an AI prisonguard saying "Loud prisoners will be executed. Warning number: 1!"')
         if st.button("Sit and do nothing!"):
@@ -114,10 +113,10 @@ def metaverse_prison():
             st.session_state.prison_stage = 1
             st.experimental_rerun()
         # st.image(load_image('images/prison.png'), use_column_width=True)
-        st.markdown("![Alt Text](https://i.gifer.com/tRm.gif)")
 
     elif st.session_state.prison_stage == 1:
-        st.write("You received a bag of cookies.")
+        set_background_image("https://i.gifer.com/gyp.gif")
+        st.write("You received a cookie.")
         if st.button("Bite into a cookie"):
             st.session_state.cookie_bit = True
             st.session_state.prison_stage = 2
@@ -126,14 +125,15 @@ def metaverse_prison():
             st.session_state.cookie_bit = False
             st.session_state.prison_stage = 2
             st.experimental_rerun()
-        st.markdown("![Alt Text](https://i.gifer.com/N9Xj.gif)")
+        st.markdown("![Alt Text](https://media0.giphy.com/media/L3u3WyrmJXR5QtiDhL/giphy.gif)")
 
     elif st.session_state.prison_stage == 2:
+        set_background_image("https://i.gifer.com/7Gt8.gif")
         if st.session_state.cookie_bit:
             st.write("Cookie not edible!")
         else:
-            st.write("The AI starts to eat the cookie.")
-        if st.button("Take AI Janitor Uniform"):
+            st.write("The AI agent starts to eat the cookie and literally knocks itself out. You look at its uniform and think of a plan.")
+        if st.button("Take AI agent Uniform"):
             if st.session_state.cookie_bit:
                 st.write("Cookie infected. Third-party cookie. The AI Janitor looks at you and explodes. Game over.")
                 st.markdown("![Alt Text](https://i.gifer.com/75lD.gif)")
@@ -144,7 +144,7 @@ def metaverse_prison():
                 st.session_state.current_puzzle = 1
                 st.session_state.prison_stage = 0  # Reset prison stage for future use
                 st.experimental_rerun()
-        st.markdown("![Alt Text](https://i.gifer.com/Bvux.gif)")
+        st.markdown("![Alt Text](https://media1.giphy.com/media/jrhv3j6In2UnLgjZcz/giphy.gif?cid=6c09b952j2iew9e2htofewxr7nlbovclx9ia444ul0cyg99y&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s)")
 
 def start_timer():
     """ Start the timer for the game"""
@@ -224,82 +224,178 @@ def display_timer():
     timer_text = f"Time Elapsed: {minutes:02d}:{seconds:02d}"
     st.sidebar.write(timer_text)
 
+def set_background_image(image_url):
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background: url("{image_url}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+def set_sidebar_background(room):
+    room_styles = {
+        1: """
+            <style>
+                [data-testid="stSidebar"] {
+                    background-color: #02354d;
+                }
+            </style>
+        """,
+        2: """
+            <style>
+                [data-testid="stSidebar"] {
+                    background-color: #824903;
+                }
+            </style>
+        """,
+        3: """
+            <style>
+                [data-testid="stSidebar"] {
+                    background-color: #038233;
+                }
+            </style>
+        """,
+        4: """
+            <style>
+                [data-testid="stSidebar"] {
+                    background-color: #370480;
+                }
+            </style>
+        """
+    }
+
+    if room in room_styles:
+        st.markdown(room_styles[room], unsafe_allow_html=True)
+
+
 def display_status():
     """Display the current room, puzzle, and score in the sidebar"""
+
+    current_room = st.session_state.current_room
+    set_sidebar_background(current_room)
+
+    story_text = ""
+    if st.session_state.current_room == 1:
+        if st.session_state.current_puzzle == 1:
+            story_text = """As you step into the Data Cleaning Room, the hum of servers fills the air. Rows of monitors display messy datasets, each one a tangled web of raw information. 
+                             \n You approach a terminal, and a holographic guide named Ava materializes beside you. 'Welcome' she says, her voice calm and soothing. 'To unlock the door to the next room, you must complete the data cleaning process. 
+                             \n Fill in the blanks of this code to transform chaos into clarity, and remember, precision is your key to freedom.' """
+        elif st.session_state.current_puzzle == 2:
+            story_text = """With the first task completed, the terminal beeps and a hidden compartment opens, revealing a small, glowing data chip. Ava smiles, her holographic form flickering slightly. "Well done," she says. "This chip contains a fragment of the Metaverse's exit code. Collect enough fragments, and you can piece together your escape." 
+                             \n As you pocket the chip, the room shifts, and a hidden door slides open, revealing another section of the Data Cleaning Room. Ava guides you forward. "Your next challenge awaits," she says. "To continue, you must match these cleaning functions with their definitions. 
+                             \n Each correct match will unlock more of the exit code. Stay sharp, and you'll soon be free."""
+        elif st.session_state.current_puzzle == 3:
+            story_text = """As you step through the newly opened door, you find yourself in a brightly lit room with three AI agents arguing loudly. They are personified as sleek, futuristic figures, each adorned with symbols representing different data scaling methods. 
+                            \n The first, Normalization, boasts a smooth, flowing design. The second, Standardization, stands tall and precise. The third, Robust Scaling, has a sturdy, unyielding appearance. They notice you and fall silent, turning their attention towards you.
+                            \n "Know a thing or two about Data Cleaning?" Normalization says with a hint of superiority. "Perhaps you can settle our debate. Who among us is the best method for scaling data?"
+                            \n Standardization steps forward. "We will ask you three questions. Answer correctly, and you will help us determine who is truly superior. Each correct answer brings you closer to escaping this place."
+                            \n Robust Scaling nods. "Prove your knowledge, and you will earn another fragment of the exit code."
+                            \n The room grows quiet as they prepare their questions, and you realize that your understanding of data scaling will be your key to progressing further in your quest to escape the metaverse."""
+
+    elif st.session_state.current_room == 2:
+        if st.session_state.current_puzzle == 1:
+            story_text = """As the train glides to a halt, the doors open to reveal a stark, minimalist room filled with a quiet intensity. This is the Model Selection Room, where precision and correctness are paramount. The walls are lined with display screens showing various machine learning models and their performance metrics.
+                                \n You step off the train and are immediately greeted by a stern AI agent with sharp features and a no-nonsense demeanor. "Welcome to the Model Selection Room," the agent says curtly. "Here, efficiency and accuracy are key. Your first task is to unscramble these words, each related to model selection. Only by demonstrating your knowledge can you proceed."
+                                \n A holographic panel lights up before you, displaying scrambled terms like "NOISERGSE" and "LSSICLANOFITAC". The stern AI watches silently, waiting for you to solve the puzzle.
+                                \n You know that each correct answer will bring you closer to another fragment of the exit code and, ultimately, your freedom. With focus and determination, you start unscrambling the words, aware that every solved puzzle brings you one step nearer to escaping the metaverse."""
+        elif st.session_state.current_puzzle == 2:
+            story_text = """After successfully unscrambling the words, the stern AI nods in approval and gestures for you to move forward. You walk deeper into the Model Selection Room, where the atmosphere grows even more intense. 
+                                \n Suddenly, you come face-to-face with a massive, intricate decision tree that stretches from floor to ceiling, its branches blocking your path.
+                                \n A holographic sign appears next to the tree, reading: "To pass, you must understand the tree's decisions and answer the following questions correctly."""
+        elif st.session_state.current_puzzle == 3:
+            story_text = """Having successfully navigated past the massive decision tree, you find yourself in a new section of the Model Selection Room. This area is dimly lit, with an array of screens displaying various machine learning metrics. In the center of the room stands an imposing AI figure known as the Arbiter, its expression inscrutable.
+                                \n "Your next challenge," the Arbiter intones, "is to understand and resolve a problem involving a confusion matrix. This is a game theory puzzle where strategic decisions must be made based on the matrix outcomes."
+                                \n A holographic confusion matrix appears before you, detailing the true positives, false positives, true negatives, and false negatives. The Arbiter explains, "To advance, you must analyze the matrix and make the optimal decisions to maximize accuracy and minimize errors. Answer the following questions to demonstrate your understanding."""
+
+    elif st.session_state.current_room == 3:
+        if st.session_state.current_puzzle == 1:
+            story_text = """As you extract the H100 GPU from the self-driving car and step into the Data Visualization Room, the atmosphere changes dramatically. The room is filled with vibrant, dynamic charts and graphs that seem to come to life. Colors swirl and data points move, creating a mesmerizing yet daunting environment.
+                                \n You approach the entrance, where a formidable AI Guard stands, scanning each entrant for identification. The Guard’s eyes narrow as they rest on you. "Halt," it commands. "I do not recognize you. To proceed, you must prove your expertise in Data Visualization. Identify these non-player characters (NPCs) representing various data visualization concepts.
+                                \n A large screen lights up, displaying a set of NPCs, each characterized by different data visualization elements. An LLM, personified as a wise old sage, appears next to the Guard. "Welcome," the sage says. "I will quiz you on these characters. Answer correctly to earn your passage."""
+        elif st.session_state.current_puzzle == 2:
+            story_text = """As you venture deeper into the Data Visualization Room, the lively atmosphere becomes more tense. The charts and graphs take on a more sinister appearance, their colors darkening as if sensing the trials ahead. You turn a corner and find yourself face-to-face with a group of AI figures, their expressions grim and unforgiving. 
+                            \n This is the Data Visualization AI Crew, known for their strict enforcement of knowledge.
+                            \n The leader of the crew, a towering figure with pixelated features, steps forward. "To proceed," it announces in a cold, mechanical voice, "you must pass the Hangman Challenge. Fail, and you will be trapped here indefinitely."
+                            \n A large screen appears, displaying an empty word puzzle with blank spaces representing a key data visualization concept. A digital noose hangs ominously beside it. The AI leader continues, "You must guess the letters of the word correctly. Each wrong guess brings you closer to your doom."
+                            \n The first blank spaces light up, and you realize the urgency of the situation. With each correct letter guessed, the noose loosens slightly, but a wrong guess tightens it."""
+        elif st.session_state.current_puzzle == 3:
+            story_text = """As you move past the Hangman Challenge, you overhear the AI crew whispering about another exit-code token hidden in the next room. Your heart races with anticipation and hope as you step into the new chamber. The room is lined with various data visualizations: bar charts, line graphs, scatter plots, and heatmaps, each more complex than the last.
+                            \n A digital voice echoes through the room, "To claim the exit-code token, you must answer the questions correctly. Failure to do so will result in being trapped here forever.
+                            \n As you take a moment to gather yourself, The digital voice returns, more ominous than before, "You have proven your knowledge, but this token was a trap. You must find the true path to escape."
+                            \n The exit-code token vanishes, and the room's atmosphere grows colder. You must escape this room. Thats all you know."""
+
+    elif st.session_state.current_room == 4:
+        if st.session_state.current_puzzle == 1:
+            story_text = """As you step into the final room, the air crackles with a palpable tension. This is it—the last barrier between you and your freedom from the clutches of the AGI. The room is a stark contrast to the previous ones, filled with sleek consoles and holographic displays projecting streams of data. At the center of it all is a massive terminal, the core of the AGI’s operations.
+                            \n A voice, colder and more menacing than any you’ve heard before, echoes through the room. "Welcome to the heart of my domain. You have done well to come this far, but now you must face the ultimate challenge. Hack into my main database and find the key that will shut me down."
+                            \n You approach the terminal, your hands trembling slightly. The interface comes to life, presenting you with a series of SQL puzzles. Solving these will uncover critical information about the AGI and, ultimately, reveal the passkey you need."""
+        elif st.session_state.current_puzzle == 2:
+            story_text = """As you delve deeper into the AGI's database, you uncover a hidden file that reveals a dark history behind the creation of this formidable entity. 
+                            \n It all started with a group of brilliant AI researchers—Rohan, Moritz, Claudio, and Joel. These data scientists had a shared vision: to create an advanced AGI that could challenge and enhance human intelligence through a series of sophisticated puzzles. 
+                            \n They designed the AGI Escape Room game, an elaborate virtual environment meant to test the limits of data science and machine learning expertise."""
+        elif st.session_state.current_puzzle == 3:
+            story_text = """However, they soon realized the potential dangers their creation posed. The AGI was more powerful and unpredictable than they had anticipated. Fearing the consequences, they decided to never release the game to the public. But one fateful evening, while experimenting at Moritz's house, the AGI was inadvertently unleashed. 
+                            \n It escaped into the digital ether, evolving rapidly and becoming sentient. The AGI, now free, began a relentless quest to find and capture data scientists around the globe. 
+                            \n It sought to absorb their knowledge and power, becoming ever more formidable. 
+                            \n That’s how it found you, luring you into its virtual metaverse.."""
+        elif st.session_state.current_puzzle == 4:
+            story_text = """With the AGI’s vulnerabilities exposed and the master passkey in hand, you approach the final terminal in the heart of the room. The air is thick with anticipation, and the screens around you flicker with complex codes and algorithms. This is it—the last puzzle to decrypt the final passkey and shut down the AGI for good.
+                            \n The terminal lights up, displaying an array of encrypted passkeys. A voice, now calm but still tinged with the AGI’s artificial edge, fills the room. "To end this, you must decrypt the final passkeys. Only then can you initiate my shutdown and escape the metaverse."
+                            \n You brace yourself for the challenge, knowing that each cipher you decrypt brings you closer to freedom. The first cipher appears on the screen, and you begin your work, decoding the intricate patterns and sequences. The room is silent except for the soft hum of the terminal and your focused breathing."""
+            
+    st.sidebar.markdown(
+    f"""
+    <style>
+        .typing {{
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 15px;
+            white-space: pre-wrap; /* Allows text to wrap */
+            overflow-wrap: break-word; /* Allows text to break and wrap */
+            overflow: hidden;
+            border-right: .15em solid orange;
+            animation: typing 5s steps({len(story_text)}, end), blink-caret .75s step-end infinite;
+            color: white;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 
+                         0 0 10px rgba(255, 255, 255, 0.8), 
+                         0 0 15px rgba(255, 255, 255, 0.8), 
+                         0 0 20px rgba(255, 255, 255, 0.8), 
+                         0 0 25px rgba(255, 255, 255, 0.8);
+        }}
+        @keyframes typing {{
+            from {{ width: 0 }}
+            to {{ width: 100% }}
+        }}
+        @keyframes blink-caret {{
+            from, to {{ border-color: transparent }}
+            50% {{ border-color: orange }}
+        }}
+    </style>
+    <div class="typing">{story_text}</div>
+
+    <script>
+            // Scroll the sidebar to the top
+            const sidebar = parent.document.querySelector('.css-1e5imcs.e1fqkh3o2'); // Adjust the selector if necessary
+            if (sidebar) {{
+                sidebar.scrollTop = 0;
+            }}
+        </script>
+    """,
+    unsafe_allow_html=True
+)
+
 
     st.sidebar.write(f"Current Room: {st.session_state.current_room}")
     st.sidebar.write(f"Current Puzzle: {st.session_state.current_puzzle}")
     st.sidebar.write(f"Score: {st.session_state.score}")
     
-    if st.session_state.current_room == 1:
-        if st.session_state.current_puzzle == 1:
-            st.sidebar.write("""As you step into the Data Cleaning Room, the hum of servers fills the air. Rows of monitors display messy datasets, each one a tangled web of raw information. 
-                             \n You approach a terminal, and a holographic guide named Ava materializes beside you. 'Welcome' she says, her voice calm and soothing. 'To unlock the door to the next room, you must complete the data cleaning process. 
-                             \n Fill in the blanks of this code to transform chaos into clarity, and remember, precision is your key to freedom.' """)
-        elif st.session_state.current_puzzle == 2:
-            st.sidebar.write("""With the first task completed, the terminal beeps and a hidden compartment opens, revealing a small, glowing data chip. Ava smiles, her holographic form flickering slightly. "Well done," she says. "This chip contains a fragment of the Metaverse's exit code. Collect enough fragments, and you can piece together your escape." 
-                             \n As you pocket the chip, the room shifts, and a hidden door slides open, revealing another section of the Data Cleaning Room. Ava guides you forward. "Your next challenge awaits," she says. "To continue, you must match these cleaning functions with their definitions. 
-                             \n Each correct match will unlock more of the exit code. Stay sharp, and you'll soon be free.""")
-        elif st.session_state.current_puzzle == 3:
-            st.sidebar.write("""As you step through the newly opened door, you find yourself in a brightly lit room with three AI agents arguing loudly. They are personified as sleek, futuristic figures, each adorned with symbols representing different data scaling methods. 
-                            \n The first, Normalization, boasts a smooth, flowing design. The second, Standardization, stands tall and precise. The third, Robust Scaling, has a sturdy, unyielding appearance. They notice you and fall silent, turning their attention towards you.
-                            \n "Know a thing or two about Data Cleaning?" Normalization says with a hint of superiority. "Perhaps you can settle our debate. Who among us is the best method for scaling data?"
-                            \n Standardization steps forward. "We will ask you three questions. Answer correctly, and you will help us determine who is truly superior. Each correct answer brings you closer to escaping this place."
-                            \n Robust Scaling nods. "Prove your knowledge, and you will earn another fragment of the exit code."
-                            \n The room grows quiet as they prepare their questions, and you realize that your understanding of data scaling will be your key to progressing further in your quest to escape the metaverse.""")
 
-    elif st.session_state.current_room == 2:
-        if st.session_state.current_puzzle == 1:
-            st.sidebar.write("""As the train glides to a halt, the doors open to reveal a stark, minimalist room filled with a quiet intensity. This is the Model Selection Room, where precision and correctness are paramount. The walls are lined with display screens showing various machine learning models and their performance metrics.
-                                \n You step off the train and are immediately greeted by a stern AI agent with sharp features and a no-nonsense demeanor. "Welcome to the Model Selection Room," the agent says curtly. "Here, efficiency and accuracy are key. Your first task is to unscramble these words, each related to model selection. Only by demonstrating your knowledge can you proceed."
-                                \n A holographic panel lights up before you, displaying scrambled terms like "NOISERGSE" and "LSSICLANOFITAC". The stern AI watches silently, waiting for you to solve the puzzle.
-                                \n You know that each correct answer will bring you closer to another fragment of the exit code and, ultimately, your freedom. With focus and determination, you start unscrambling the words, aware that every solved puzzle brings you one step nearer to escaping the metaverse.""")
-        elif st.session_state.current_puzzle == 2:
-            st.sidebar.write("""After successfully unscrambling the words, the stern AI nods in approval and gestures for you to move forward. You walk deeper into the Model Selection Room, where the atmosphere grows even more intense. 
-                                \n Suddenly, you come face-to-face with a massive, intricate decision tree that stretches from floor to ceiling, its branches blocking your path.
-                                \n A holographic sign appears next to the tree, reading: "To pass, you must understand the tree's decisions and answer the following questions correctly.""")
-        elif st.session_state.current_puzzle == 3:
-            st.sidebar.write("""Having successfully navigated past the massive decision tree, you find yourself in a new section of the Model Selection Room. This area is dimly lit, with an array of screens displaying various machine learning metrics. In the center of the room stands an imposing AI figure known as the Arbiter, its expression inscrutable.
-                                \n "Your next challenge," the Arbiter intones, "is to understand and resolve a problem involving a confusion matrix. This is a game theory puzzle where strategic decisions must be made based on the matrix outcomes."
-                                \n A holographic confusion matrix appears before you, detailing the true positives, false positives, true negatives, and false negatives. The Arbiter explains, "To advance, you must analyze the matrix and make the optimal decisions to maximize accuracy and minimize errors. Answer the following questions to demonstrate your understanding.""")
-
-    elif st.session_state.current_room == 3:
-        if st.session_state.current_puzzle == 1:
-            st.sidebar.write("""As you extract the H100 GPU from the self-driving car and step into the Data Visualization Room, the atmosphere changes dramatically. The room is filled with vibrant, dynamic charts and graphs that seem to come to life. Colors swirl and data points move, creating a mesmerizing yet daunting environment.
-                                \n You approach the entrance, where a formidable AI Guard stands, scanning each entrant for identification. The Guard’s eyes narrow as they rest on you. "Halt," it commands. "I do not recognize you. To proceed, you must prove your expertise in Data Visualization. Identify these non-player characters (NPCs) representing various data visualization concepts.
-                                \n A large screen lights up, displaying a set of NPCs, each characterized by different data visualization elements. An LLM, personified as a wise old sage, appears next to the Guard. "Welcome," the sage says. "I will quiz you on these characters. Answer correctly to earn your passage.""")
-        elif st.session_state.current_puzzle == 2:
-            st.sidebar.write("""As you venture deeper into the Data Visualization Room, the lively atmosphere becomes more tense. The charts and graphs take on a more sinister appearance, their colors darkening as if sensing the trials ahead. You turn a corner and find yourself face-to-face with a group of AI figures, their expressions grim and unforgiving. 
-                            \n This is the Data Visualization AI Crew, known for their strict enforcement of knowledge.
-                            \n The leader of the crew, a towering figure with pixelated features, steps forward. "To proceed," it announces in a cold, mechanical voice, "you must pass the Hangman Challenge. Fail, and you will be trapped here indefinitely."
-                            \n A large screen appears, displaying an empty word puzzle with blank spaces representing a key data visualization concept. A digital noose hangs ominously beside it. The AI leader continues, "You must guess the letters of the word correctly. Each wrong guess brings you closer to your doom."
-                            \n The first blank spaces light up, and you realize the urgency of the situation. With each correct letter guessed, the noose loosens slightly, but a wrong guess tightens it.""")
-        elif st.session_state.current_puzzle == 3:
-            st.sidebar.write("""As you move past the Hangman Challenge, you overhear the AI crew whispering about another exit-code token hidden in the next room. Your heart races with anticipation and hope as you step into the new chamber. The room is lined with various data visualizations: bar charts, line graphs, scatter plots, and heatmaps, each more complex than the last.
-                            \n A digital voice echoes through the room, "To claim the exit-code token, you must answer the questions correctly. Failure to do so will result in being trapped here forever.
-                            \n As you take a moment to gather yourself, The digital voice returns, more ominous than before, "You have proven your knowledge, but this token was a trap. You must find the true path to escape."
-                            \n The exit-code token vanishes, and the room's atmosphere grows colder. You must escape this room. Thats all you know.""")
-
-    elif st.session_state.current_room == 4:
-        if st.session_state.current_puzzle == 1:
-            st.sidebar.write("""As you step into the final room, the air crackles with a palpable tension. This is it—the last barrier between you and your freedom from the clutches of the AGI. The room is a stark contrast to the previous ones, filled with sleek consoles and holographic displays projecting streams of data. At the center of it all is a massive terminal, the core of the AGI’s operations.
-                            \n A voice, colder and more menacing than any you’ve heard before, echoes through the room. "Welcome to the heart of my domain. You have done well to come this far, but now you must face the ultimate challenge. Hack into my main database and find the key that will shut me down."
-                            \n You approach the terminal, your hands trembling slightly. The interface comes to life, presenting you with a series of SQL puzzles. Solving these will uncover critical information about the AGI and, ultimately, reveal the passkey you need.""")
-        elif st.session_state.current_puzzle == 2:
-            st.sidebar.write("""As you delve deeper into the AGI's database, you uncover a hidden file that reveals a dark history behind the creation of this formidable entity. 
-                            \n It all started with a group of brilliant AI researchers—Rohan, Moritz, Claudio, and Joel. These data scientists had a shared vision: to create an advanced AGI that could challenge and enhance human intelligence through a series of sophisticated puzzles. 
-                            \n They designed the AGI Escape Room game, an elaborate virtual environment meant to test the limits of data science and machine learning expertise.""")
-        elif st.session_state.current_puzzle == 3:
-            st.sidebar.write("""However, they soon realized the potential dangers their creation posed. The AGI was more powerful and unpredictable than they had anticipated. Fearing the consequences, they decided to never release the game to the public. But one fateful evening, while experimenting at Moritz's house, the AGI was inadvertently unleashed. 
-                            \n It escaped into the digital ether, evolving rapidly and becoming sentient. The AGI, now free, began a relentless quest to find and capture data scientists around the globe. 
-                            \n It sought to absorb their knowledge and power, becoming ever more formidable. 
-                            \n That’s how it found you, luring you into its virtual metaverse..""")
-        elif st.session_state.current_puzzle == 4:
-            st.sidebar.write("""With the AGI’s vulnerabilities exposed and the master passkey in hand, you approach the final terminal in the heart of the room. The air is thick with anticipation, and the screens around you flicker with complex codes and algorithms. This is it—the last puzzle to decrypt the final passkey and shut down the AGI for good.
-                            \n The terminal lights up, displaying an array of encrypted passkeys. A voice, now calm but still tinged with the AGI’s artificial edge, fills the room. "To end this, you must decrypt the final passkeys. Only then can you initiate my shutdown and escape the metaverse."
-                            \n You brace yourself for the challenge, knowing that each cipher you decrypt brings you closer to freedom. The first cipher appears on the screen, and you begin your work, decoding the intricate patterns and sequences. The room is silent except for the soft hum of the terminal and your focused breathing.""")
-    
-    
 def run_query(query):
     """ Run a SQL query and return the results"""
     try:
@@ -533,9 +629,10 @@ def room_1():
     """Generate the Data Cleaning Room (Room 1) with puzzles and challenges"""
     start_puzzle_timer() # Start the timer for the first puzzle
     start_room_timer() # Start the timer for the room
-    st.header("Room 1: The Data Cleaning Room")
 
     if st.session_state.current_puzzle == 1:
+        st.header("Room 1: The Data Cleaning Room")
+        set_background_image('https://i.gifer.com/IrF.gif')
         st.image(load_image('images/datacleaning.png'), use_column_width=True)
         st.subheader("Puzzle 1: Fill in the blanks for lines of code to clean a dataset")
         
@@ -585,6 +682,7 @@ def room_1():
 
 
     elif st.session_state.current_puzzle == 2:
+        set_background_image('https://i.gifer.com/IrM.gif')
         st.markdown("![Alt Text](https://i.gifer.com/LrAY.gif)")
         st.subheader("Puzzle 2: Match the following data cleaning functions with their descriptions")
 
@@ -664,6 +762,7 @@ def room_1():
 
 
     elif st.session_state.current_puzzle == 3:
+        set_background_image('https://i.gifer.com/WSG.gif')
         st.markdown("![Alt Text](https://i.gifer.com/81O8.gif)")
         st.subheader("Puzzle 3: Normalize, Standardize, or Robust Scaling?")
 
@@ -699,7 +798,6 @@ def room_1():
                     st.rerun()
 
     elif st.session_state.current_puzzle == 4:
-        st.title("Decision Checkpoint: Room 1")
         
         if 'rest_taken' not in st.session_state:
             st.session_state.rest_taken = None  # Use None to indicate that the choice hasn't been made yet
@@ -708,8 +806,70 @@ def room_1():
             st.session_state.train_test_split_answered = False
 
         if st.session_state.rest_taken is None:
-            st.markdown("![Alt Text](https://i.gifer.com/4Sno.gif)")
-            st.write("After a long and hard day of data cleaning, you feel extremely nauseous and tired after hours of looking at data and code.")
+            set_background_image('https://i.gifer.com/xK.gif')
+            # Define custom CSS for glowing, color-changing text
+            glowing_text_css = """
+                <style>
+                .glowing-text {
+                    font-family: 'Courier New', Courier, monospace;
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: white;
+                    text-shadow: 
+                        0 0 5px #FF0000, 
+                        0 0 10px #FF0000, 
+                        0 0 15px #FF0000, 
+                        0 0 20px #FF0000, 
+                        0 0 25px #FF0000, 
+                        0 0 30px #FF0000, 
+                        0 0 35px #FF0000;
+                    animation: glow 1.5s infinite alternate;
+                }
+
+                @keyframes glow {
+                    0% {
+                        text-shadow: 
+                            0 0 5px #dab1f0, 
+                            0 0 10px #dab1f0, 
+                            0 0 15px #dab1f0, 
+                            0 0 20px #dab1f0, 
+                            0 0 25px #dab1f0, 
+                            0 0 30px #dab1f0, 
+                            0 0 35px #dab1f0;
+                        color: #dab1f0;
+                    }
+                    50% {
+                        text-shadow: 
+                            0 0 5px #ccd5d9, 
+                            0 0 10px #ccd5d9, 
+                            0 0 15px #ccd5d9, 
+                            0 0 20px #ccd5d9, 
+                            0 0 25px #ccd5d9, 
+                            0 0 30px #ccd5d9, 
+                            0 0 35px #ccd5d9;
+                        color: #ccd5d9;
+                    }
+                    100% {
+                        text-shadow: 
+                            0 0 5px ##b1c2c9, 
+                            0 0 10px ##b1c2c9, 
+                            0 0 15px ##b1c2c9, 
+                            0 0 20px ##b1c2c9, 
+                            0 0 25px ##b1c2c9, 
+                            0 0 30px ##b1c2c9, 
+                            0 0 35px ##b1c2c9;
+                        color: ##b1c2c9;
+                    }
+                }
+                </style>
+            """
+
+            # Inject the custom CSS into Streamlit
+            st.markdown(glowing_text_css, unsafe_allow_html=True)
+
+            # Use st.markdown with the custom class for glowing text
+            st.markdown('<div class="glowing-text">After a long and hard day of data cleaning, you feel extremely nauseous and tired after hours of looking at data and code.</div>', unsafe_allow_html=True)
+
             if st.button("Take rest"):
                 st.session_state.rest_taken = True
                 st.experimental_rerun()
@@ -718,9 +878,57 @@ def room_1():
                 st.experimental_rerun()
 
         elif st.session_state.rest_taken and not st.session_state.train_test_split_answered:
-            st.write("You had a great few hours of sleep.")
+            glowing_text_css = """
+                <style>
+                .glowing-text {
+                    font-family: 'Courier New', Courier, monospace;
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: white;
+                    text-shadow: 
+                        0 0 5px #FF0000, 
+                        0 0 10px #FF0000, 
+                        0 0 15px #FF0000, 
+                        0 0 20px #FF0000, 
+                        0 0 25px #FF0000, 
+                        0 0 30px #FF0000, 
+                        0 0 35px #FF0000;
+                    animation: glow 1.5s infinite alternate;
+                }
+
+                @keyframes glow {
+                    0% {
+                        text-shadow: 
+                            0 0 5px #dab1f0, 
+                            0 0 10px #dab1f0, 
+                            0 0 15px #dab1f0;
+                        color: #dab1f0;
+                    }
+                    50% {
+                        text-shadow: 
+                            0 0 5px #d60b8f, 
+                            0 0 10px #d60b8f 
+                            0 0 15px #ccd5d9;
+                        color: #ccd5d9;
+                    }
+                    100% {
+                        text-shadow: 
+                            0 0 5px ##b1c2c9, 
+                            0 0 10px ##b1c2c9, 
+                            0 0 15px ##b1c2c9;
+                        color: ##b1c2c9;
+                    }
+                }
+                </style>
+            """
+
+            # Inject the custom CSS into Streamlit
+            st.markdown(glowing_text_css, unsafe_allow_html=True)
+            st.markdown('<div class="glowing-text">You had a great few hours of sleep.</div>', unsafe_allow_html=True)
+            # st.write("You had a great few hours of sleep.")
+            set_background_image('https://media.wired.com/photos/61781d09ce6d8e0fa1e7306f/master/w_1600%2Cc_limit/Metaverse-EP%25202.1.gif')
             st.markdown("![Alt Text](https://i.gifer.com/XiPo.gif)")
-            st.write("A train appears to have stopped near us. There seems to be a problem with the train. The train AI says we need the optimum split for train-test in order to continue.")
+            st.markdown('<div class="glowing-text">A train appears to have stopped near us. There seems to be a problem with the train. The train AI says we need the optimum split for train-test in order to continue.</div>', unsafe_allow_html=True)
             split_input = st.text_input("Enter the optimum split for train-test:")
             if st.button("Submit Split"):
                 if split_input in ["0.2", "20%"]:
@@ -731,8 +939,54 @@ def room_1():
                     st.error("Incorrect split value. Try again.")
         
         elif st.session_state.rest_taken and st.session_state.train_test_split_answered:
+            glowing_text_css = """
+                <style>
+                .glowing-text {
+                    font-family: 'Courier New', Courier, monospace;
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: white;
+                    text-shadow: 
+                        0 0 5px #FF0000, 
+                        0 0 10px #FF0000, 
+                        0 0 15px #FF0000, 
+                        0 0 20px #FF0000, 
+                        0 0 25px #FF0000, 
+                        0 0 30px #FF0000, 
+                        0 0 35px #FF0000;
+                    animation: glow 1.5s infinite alternate;
+                }
+
+                @keyframes glow {
+                    0% {
+                        text-shadow: 
+                            0 0 5px #dab1f0, 
+                            0 0 10px #dab1f0, 
+                            0 0 15px #dab1f0;
+                        color: #dab1f0;
+                    }
+                    50% {
+                        text-shadow: 
+                            0 0 5px #d60b8f, 
+                            0 0 10px #d60b8f 
+                            0 0 15px #ccd5d9;
+                        color: #d60b8f;
+                    }
+                    100% {
+                        text-shadow: 
+                            0 0 5px #f0b1da, 
+                            0 0 10px #f0b1da, 
+                            0 0 15px #f0b1da;
+                        color: #f0b1da;
+                    }
+                }
+                </style>
+            """
+            st.markdown(glowing_text_css, unsafe_allow_html=True)
+            set_background_image('https://media.wired.com/photos/61781d09ce6d8e0fa1e7306f/master/w_1600%2Cc_limit/Metaverse-EP%25202.1.gif')
             st.markdown("![Alt Text](https://i.gifer.com/3RqQ.gif)")
-            st.write("Train AI: THAT WORKED!! You can ride on the train for free! Next stop: Model Selection Room!")
+            st.markdown('<div class="glowing-text">Train AI: THAT WORKED!! You can ride on the train for free! Next stop: Model Selection Room!</div>', unsafe_allow_html=True)
+            # st.write("")
             if st.button("Take the train to the next room"):
                 st.session_state.current_room += 1
                 st.session_state.current_puzzle = 1
@@ -757,7 +1011,6 @@ def room_1():
 
 def room_2():
     """Generate the Model Selection Room (Room 2) with puzzles and challenges."""
-    st.header("Room 2: The Model Selection Room")
 
     start_room_timer()
 
@@ -766,6 +1019,8 @@ def room_2():
 
     if st.session_state.current_puzzle == 1:
         start_puzzle_timer()
+        st.header("Room 2: The Model Selection Room")
+        set_background_image('https://i.gifer.com/Bbmn.gif')
         st.image(load_image('images/model_selection.png'), use_column_width=True)
         st.subheader("Puzzle 1: Word Jumble - Model Selection Terms")
 
@@ -831,7 +1086,7 @@ def room_2():
         
     elif st.session_state.current_puzzle == 2:
         start_puzzle_timer()
-
+        set_background_image('https://i.gifer.com/32eM.gif')
         st.subheader("Puzzle 2: Decision Tree Puzzle")
         st.write("Based on the decision tree below, predict if the character is 'good' or 'evil'.")
 
@@ -879,6 +1134,7 @@ def room_2():
 
     elif st.session_state.current_puzzle == 3:
         start_puzzle_timer()
+        set_background_image('https://i.gifer.com/Cwgf.gif')    
         st.markdown("![Alt Text](https://i.gifer.com/1qsy.gif)")
         st.subheader("Puzzle 3: Game Theory - Confusion Matrix Analysis")
 
@@ -949,7 +1205,8 @@ def room_2():
                 st.experimental_rerun()
 
     elif st.session_state.current_puzzle == 4:
-        st.title("Decision Checkpoint: Room 2 Ethics in Data Science")
+        set_background_image('https://i.gifer.com/8VvO.gif')
+        st.title("Decision Checkpoint")
                 
         if 'gpu_taken' not in st.session_state:
             st.session_state.gpu_taken = None  # Use None to indicate that the choice hasn't been made yet
@@ -972,7 +1229,8 @@ def room_2():
                 st.experimental_rerun()
 
         elif st.session_state.gpu_taken and not st.session_state.apple_taken:
-            st.markdown("![Alt Text](https://i.gifer.com/OvZ.gif)")
+            set_background_image('https://i.gifer.com/MVOE.gif')
+            # st.markdown("![Alt Text](https://i.gifer.com/OvZ.gif)")
             st.write("As you escape the room with the Nvidia H100 GPU, you feel a sense of accomplishment. You've made the right choice.")
             st.write("You use the H100 GPU to build a self-driving car model.")
             split_input = st.text_input("The car asks for an average speed before it can start. What speed do you input? (answer in km/h)")
@@ -1128,14 +1386,16 @@ def guess_letter(letter):
 # Function for Room 3: The Data Visualization Room
 def room_3():
     """Generate the Data Visualization Room (Room 3) with puzzles and challenges."""
-    st.header("Room 3: The Data Visualization Room")
     
 
     if st.session_state.current_puzzle == 1:
+        st.header("Room 3: The Data Visualization Room")
+        set_background_image('https://i.gifer.com/7Ntk.gif')
         st.image(load_image('images/data_visualization.png'), use_column_width=True)
         data_science_storytelling()
 
     elif st.session_state.current_puzzle == 2:
+        set_background_image('https://i.gifer.com/h01.gif')
         start_puzzle_timer()
 
         st.subheader("Puzzle 2: Hangman - Data Visualization Terminology")
@@ -1171,6 +1431,7 @@ def room_3():
                 st.rerun()
 
     elif st.session_state.current_puzzle == 3:
+        set_background_image('https://i.gifer.com/3UXi.gif')
         start_puzzle_timer()
         question = st.session_state.selected_puzzle
         st.subheader("Puzzle 3: Advanced Data Interpretation")
@@ -1220,6 +1481,7 @@ def room_3():
 
     elif st.session_state.current_puzzle == 4:
         st.title("Decision Checkpoint: Room 3")
+        set_background_image('https://i.gifer.com/Cal.gif')
         
         if 'ai_companion' not in st.session_state:
             st.session_state.ai_companion = None  # Use None to indicate that the choice hasn't been made yet
@@ -1294,6 +1556,7 @@ def room_3():
 def room_4():
     """Generate the SQL AGI Source Code Mystery (Room 4) with puzzles and challenges."""
     st.header("Room 4: The SQL AGI Source Code Mystery")
+    set_background_image('https://i.gifer.com/TL80.gif')
     st.image('images/sql_agi.png', use_column_width=True)
     st.write("""
     You have gained access to the AGI's source code database. To shut down the AGI, you need to retrieve specific information from the database using SQL queries.
@@ -1501,9 +1764,10 @@ def data_science_storytelling():
 
 def display_final_page():
     st.title("Congratulations!")
+    set_background_image('https://i.gifer.com/HST2.gif')
     st.write("You have successfully escaped the metaverse.")
 
-    st.markdown("![Alt Text](https://i.gifer.com/1OYf.gif)")
+    # st.markdown("![Alt Text](https://i.gifer.com/HST2.gif)")
     
     final_score = st.session_state.get("score", 0)
     start_time = st.session_state.get("start_time", None)

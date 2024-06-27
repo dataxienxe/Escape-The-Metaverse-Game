@@ -38,10 +38,42 @@ if 'game_started' not in st.session_state:
 
 # Prompt user for their name and start the game
 if not st.session_state.intro_shown and not st.session_state.intro_screen:
-    st.session_state.name = st.text_input("Enter your name to start the game:")
+   # Define custom CSS for the text input label
+    custom_css = """
+        <style>
+        .styled-label {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
+                        0 0 10px rgba(255, 255, 255, 0.8),
+                        0 0 15px rgba(255, 255, 255, 0.8),
+                        0 0 20px rgba(255, 255, 255, 0.8),
+                        0 0 25px rgba(255, 255, 255, 0.8);
+            animation: blinkingText 1.2s infinite;
+        }
+
+        @keyframes blinkingText {
+            0% { color: white; }
+            49% { color: white; }
+            60% { color: transparent; }
+            99% { color: transparent; }
+            100% { color: white; }
+        }
+        </style>
+    """
+
+    # Use st.markdown to inject custom CSS and HTML for the label and input box
+    st.markdown(custom_css, unsafe_allow_html=True)
+    st.markdown('<div class="styled-label">Enter your name to start the game:</div>', unsafe_allow_html=True)
+    st.session_state.name = st.text_input("", key="name_input")
+
+    
     if st.session_state.name and st.button("Start Game", key="start_game"):
         st.session_state.intro_screen = True
         st.experimental_rerun()
+    ff.set_background_image('https://amplify.nabshow.com/wp-content/uploads/sites/12/2022/05/metaverse-ontrack.gif')
     st.image(ff.load_image('images/codeescape_logo.png'), use_column_width=True)
 
 # Show the intro if the name has been entered but the game hasn't started
@@ -145,20 +177,22 @@ if st.session_state.game_started:
         if st.session_state.current_room == 0:
             st.sidebar.empty()
         else:
+             # Add story and game status to the sidebar
+            ff.display_status()
             # Add skip buttons in the sidebar with unique keys
-            st.sidebar.title("Debug buttons")
-            if st.sidebar.button("Skip puzzle", key="skip_puzzle"):
-                st.session_state.current_puzzle += 1
-                st.experimental_rerun()
-            if st.sidebar.button("Skip sql puzzle", key="skip_sql_puzzle"):
-                st.session_state.current_sql_puzzle += 1
-                st.experimental_rerun()
-            if st.sidebar.button("Next room", key="skip_room"):
-                st.session_state.current_room += 3
-                st.experimental_rerun()
-            if st.sidebar.button("Go back", key="go_back"):
-                st.session_state.current_room -= 1
-                st.experimental_rerun()
+            # st.sidebar.title("Debug buttons")
+            # if st.sidebar.button("Skip puzzle", key="skip_puzzle"):
+            #     st.session_state.current_puzzle += 1
+            #     st.experimental_rerun()
+            # if st.sidebar.button("Skip sql puzzle", key="skip_sql_puzzle"):
+            #     st.session_state.current_sql_puzzle += 1
+            #     st.experimental_rerun()
+            # if st.sidebar.button("Next room", key="skip_room"):
+            #     st.session_state.current_room += 1
+            #     st.experimental_rerun()
+            # if st.sidebar.button("Go back", key="go_back"):
+            #     st.session_state.current_room -= 1
+            #     st.experimental_rerun()
 
         if 'start_time' in st.session_state:
             ff.display_timer()
@@ -169,7 +203,6 @@ if st.session_state.game_started:
         elif st.session_state.current_room == 5:
             ff.display_final_page()  # Add this line to display the final page
         else:
-            ff.display_status()
             if st.session_state.current_room == 1:
                 ff.room_1()
             elif st.session_state.current_room == 2:
